@@ -1,9 +1,11 @@
 #FHIR_Scenario2
 
 ##Introduction
+
 This project is our submission for the FHIR Hackathon and Scenario 2.  We have developed a prototype of a web-based application designed to enhance patient engagement and healthcare management.  Our application allows patients to log in or register, report daily symptoms, view past health records, summarize biometric data, and schedule appointments with healthcare providers.  Additionally, it incorporates a speech-to-text service for patients who may find it challenging to type, it help patients who have conditions like Arthritis.
 
 ##Features
+
 User Authentication: Secure login and registration system for patient accounts.
 
 Symptom Reporting: Daily symptom reporting tool with speech-to-text functionality for ease of use.
