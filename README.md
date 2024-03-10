@@ -17,7 +17,7 @@ Biometric Data Summary: View summaries of biometric data to track health trends 
 Appointment Scheduling: Schedule appointments with doctors directly through the app.
 
 ## To test
-Click on login.html to load the site. If the database doesn't work, then the rest of the site's functionality can be tested via home.html.
+Click on login.php load the site. If the database doesn't can't be set up, then the rest of the site's functionality can be tested via home.php (or changing the extension of the file name to home.html).
 
 ## Setting up the Database
 #### In order to test the prototype, the database needs to be locally set-up on the user's machine. Instructions are as follow:
