@@ -3,7 +3,7 @@
 ## Description
 
 This is our submission for the FHIR Hackathon and Scenarios 2. 
-We have created a prototype of the web-based app for the patient. 
+We have created a prototype of the web-based app for the patient to use. There are different features, including a speech-to-text transcription.
 
 ## Setting up the Database
 #### In order to test the prototype, the database needs to be locally set-up on the user's machine. Instructions are as follow:
