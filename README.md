@@ -5,6 +5,9 @@
 This is our submission for the FHIR Hackathon and Scenarios 2. 
 We have created a prototype of the web-based app for the patient to use. There are different features, including a speech-to-text transcription.
 
+## To test
+Click on login.html to load the site. If the database doesn't work, then the rest of the site's functionality can be tested via home.html.
+
 ## Setting up the Database
 #### In order to test the prototype, the database needs to be locally set-up on the user's machine. Instructions are as follow:
 To create a database, you first need to download and install XAMPP, which is a free and open-source cross-platform web server solution stack package. Once XAMPP is installed, you can start the Apache and MySQL services through the XAMPP control panel.
