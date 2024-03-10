@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor notifications</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+    .schedule-button {
+        margin-bottom: 10px; 
+    }
+
+    .alert {
+        margin-top: 20px; 
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo">RecovWell</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="checkup.html" class="navbar__links">
+                        Check up Questions
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="Records.html" class="navbar__links">
+                        Daily Health Records
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="data.html" class="navbar__links">
+                        Health Data Summary
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="dr.html" class="navbar__links">
+                        Your Dr
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="home.html" class="navbar__links">
+                        Home
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+    <div class="row">
+        <!-- Title Section -->
+        <div class="col-md-12 mb-4">
+            <h1 class="animated-title"> Your Doctor Services</h1>
+            <h2 class="animated-title"> Remember that we are here for you!</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="custom-card">
+                <div class="card-body">
+                    <h4 class="card-title">Schedule an Appointment:</h4>
+                    Click the plus button on the right:
+                    <button id="toggleButton" class="btn btn-sm btn-primary float-right" onclick="toggleAppointmentDetails()">+</button>
+                </div>
+                <div id="appointmentDetails" class="card-body" style="display:none;">
+                    <form id="appointmentForm" action="submit-appointment.php" method="post">
+                        <div class="form-group row">
+                            <label for="appointmentDate" class="col-sm-7 col-form-label">Available Dates:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="appointmentDate" name="appointmentDate" class="form-control" data-toggle="flatpickr" data-alt-input="true" data-alt-format="d/m/Y" data-date-format="Y-m-d" data-min-date="today">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="appointmentTime" class="col-sm-7 col-form-label">Available Times:</label>
+                            <div class="col-sm-9">
+                                <input type="time" id="appointmentTime" name="appointmentTime" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <input type="submit" value="Schedule" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-success" id="alertMessage" style="display:none;">
+                        Appointment scheduled successfully! Please check your email for confirmation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+      
+
+  </body>
+  </html>
+
+    <script>
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navbarMenu = document.querySelector('.navbar__menu');
+
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('is-active');
+                navbarMenu.classList.toggle('active');
+            });
+            flatpickr("#appointmentDate", {
+                altInput: true,
+                altFormat: "d/m/Y",
+                dateFormat: "Y-m-d",
+                minDate: "today",
+            });
+
+            flatpickr("#appointmentTime", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i", // Format for the selected time
+                time_24hr: true, // Use 24-hour format
+                minuteIncrement: 30, // Specify the time increment (in minutes)
+            });
+
+
+
+
+        function toggleAppointmentDetails() {
+            const details = document.getElementById('appointmentDetails');
+            const button = document.getElementById('toggleButton');
+            if (details.style.display === "none") {
+                details.style.display = "block";
+                button.textContent = "-";
+            } else {
+                details.style.display = "none";
+                button.textContent = "+";
+            }
+        }
+
+        // This function will be called when the form is submitted
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Show the success message
+            document.getElementById('alertMessage').style.display = 'block';
+
+            // You can add additional logic here, such as sending form data via AJAX
+            // or redirecting the user to another page
+        });
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
