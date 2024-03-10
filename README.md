@@ -5,9 +5,13 @@ This project is our submission for the FHIR Hackathon and Scenario 2.  We have d
 
 ##Features
 User Authentication: Secure login and registration system for patient accounts.
+
 Symptom Reporting: Daily symptom reporting tool with speech-to-text functionality for ease of use.
+
 Health Record Management: Access and manage past health records.
+
 Biometric Data Summary: View summaries of biometric data to track health trends over time.
+
 Appointment Scheduling: Schedule appointments with doctors directly through the app.
 
 ## To test
