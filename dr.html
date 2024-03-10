@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
     .schedule-button {
         margin-bottom: 10px; 
@@ -73,7 +74,7 @@
             <div class="custom-card">
                 <div class="card-body">
                     <h4 class="card-title">Schedule an Appointment:</h4>
-                    Click the plus button on the right:
+                    Click the plus button on the right to start:
                     <button id="toggleButton" class="btn btn-sm btn-primary float-right" onclick="toggleAppointmentDetails()">+</button>
                 </div>
                 <div id="appointmentDetails" class="card-body" style="display:none;">
@@ -102,13 +103,48 @@
                 </div>
             </div>
         </div>
+        
+         
+                <div class="col-md-6">
+                    <div class="custom-card">
+                        <div class="card-body">
+                            <h4 class="card-title">Send a Voice-Note to your Dr</h4>
+                            <h5>Click on the button below to start:</h5>
+                            <div class="container mt-5">
+                                <div class="row">
+                                    <div class="col">
+                                        <button id="start-btn" class="btn btn-primary mr-2">Start Recognition</button>
+                                        <button id="pause-btn" class="btn btn-secondary mr-2">Pause</button>
+                                        <button id="reset-btn" class="btn btn-danger mr-2">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div id="transcript" class="bg-light p-3">Transcript will appear here...</div>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <form id="voiceForm">
+                                    <div class="form-group row">
+                                        <div class="col-sm-9">
+                                            <input type="submit" value="Submit" class="btn btn-primary" id="submitBtn">
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="alert alert-success" id="alertMessage2" style="display: none;">
+                                    Sent.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
     </div>
 </div>
-    
-      
 
-  </body>
-  </html>
+
+
 
     <script>
             const mobileMenu = document.getElementById('mobile-menu');
@@ -128,9 +164,9 @@
             flatpickr("#appointmentTime", {
                 enableTime: true,
                 noCalendar: true,
-                dateFormat: "H:i", // Format for the selected time
-                time_24hr: true, // Use 24-hour format
-                minuteIncrement: 30, // Specify the time increment (in minutes)
+                dateFormat: "H:i", 
+                time_24hr: true, 
+                minuteIncrement: 30, 
             });
 
 
@@ -148,17 +184,85 @@
             }
         }
 
-        // This function will be called when the form is submitted
+    
         document.getElementById('appointmentForm').addEventListener('submit', function(event) {
-            // Prevent the default form submission behavior
             event.preventDefault();
+            document.getElementById('alertMessage').style.display = 'block';
+        });
+
+  var recognition;
+  var listening = false;
+
+  if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = true; 
+    recognition.interimResults = true; 
+
+    recognition.onstart = function() {
+      listening = true;
+      document.getElementById('pause-btn').innerText = 'Pause';
+      document.getElementById('pause-btn').style.display = 'inline';
+      document.getElementById('reset-btn').style.display = 'inline';
+    };
+
+    recognition.onerror = function(event) {
+      console.error(event.error);
+    };
+
+    recognition.onend = function() {
+      listening = false;
+    };
+
+    recognition.onresult = function(event) {
+      var transcript = '';
+      for (var i = event.resultIndex; i < event.results.length; ++i) {
+        transcript += event.results[i][0].transcript;
+      }
+      document.getElementById('transcript').innerText = transcript;
+    };
+
+    document.getElementById('start-btn').onclick = function() {
+      if (listening) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    };
+
+    document.getElementById('pause-btn').onclick = function() {
+      if (listening) {
+        recognition.stop();
+        document.getElementById('pause-btn').innerText = 'Continue';
+      } else {
+        recognition.start();
+      }
+    };
+
+    document.getElementById('reset-btn').onclick = function() {
+      recognition.stop();
+      document.getElementById('transcript').innerText = 'Transcript will appear here...';
+    };
+  } else {
+    console.log('Speech recognition not supported in this browser.');
+
+  }
+  document.getElementById('voiceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
 
             // Show the success message
-            document.getElementById('alertMessage').style.display = 'block';
+            document.getElementById('alertMessage2').style.display = 'block';
 
-            // You can add additional logic here, such as sending form data via AJAX
-            // or redirecting the user to another page
+            // Hide the success message after 3 seconds
+            setTimeout(function() {
+                document.getElementById('alertMessage2').style.display = 'none';
+            }, 3000);
+
+            // Reload the page after 5 seconds
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
         });
+
 
 
     </script>
