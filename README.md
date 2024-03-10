@@ -3,7 +3,7 @@
 ## Description
 
 This is our submission for the FHIR Hackathon and Scenarios 2. 
-We have created a prototype of the web-based app for the patient to use. There are different features, including a speech-to-text transcription.
+We have created a prototype of the web-based app for the patient to use. First the user has to login to the application (they can also create an account if they're not registered). They then navigate to the home page where they report daily symptoms (checkup.html), can view past records (Records.html - this requires database setup), can view a summary of their biometric data (data.html), and schedule appointments (dr.html). Our application includes a speech-to-text transcription service as well for patients with conditions that may make it difficult for them to type (e.g. Arthritis) their symptoms. They can then send this to their doctor. (You can try it out on dr.html)
 
 ## To test
 Click on login.html to load the site. If the database doesn't work, then the rest of the site's functionality can be tested via home.html.
