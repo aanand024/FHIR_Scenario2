@@ -1,9 +1,14 @@
-# FHIR_Scenario2
+#FHIR_Scenario2
 
-## Description
+##Introduction
+This project is our submission for the FHIR Hackathon and Scenario 2.  We have developed a prototype of a web-based application designed to enhance patient engagement and healthcare management.  Our application allows patients to log in or register, report daily symptoms, view past health records, summarize biometric data, and schedule appointments with healthcare providers.  Additionally, it incorporates a speech-to-text service for patients who may find it challenging to type, it help patients who have conditions like Arthritis.
 
-This is our submission for the FHIR Hackathon and Scenarios 2. 
-We have created a prototype of the web-based app for the patient to use. First the user has to login to the application (they can also create an account if they're not registered). They then navigate to the home page where they report daily symptoms (checkup.html), can view past records (Records.html - this requires database setup), can view a summary of their biometric data (data.html), and schedule appointments (dr.html). Our application includes a speech-to-text transcription service as well for patients with conditions that may make it difficult for them to type (e.g. Arthritis) their symptoms. They can then send this to their doctor. (You can try it out on dr.html)
+##Features
+User Authentication: Secure login and registration system for patient accounts.
+Symptom Reporting: Daily symptom reporting tool with speech-to-text functionality for ease of use.
+Health Record Management: Access and manage past health records.
+Biometric Data Summary: View summaries of biometric data to track health trends over time.
+Appointment Scheduling: Schedule appointments with doctors directly through the app.
 
 ## To test
 Click on login.html to load the site. If the database doesn't work, then the rest of the site's functionality can be tested via home.html.
